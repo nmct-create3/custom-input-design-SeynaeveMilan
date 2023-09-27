@@ -53,6 +53,9 @@
     /* --global-input-: var(--global-color-primary-500); */
     
 
+    --global-page-color: var(--global-color-neutral-950);
+    --global-page-background: var(var(--global-color-neutral-050))
+
     /* border stuff */
     --global-borderRadius: 3px;
     --global-borderWidth: 1px;
@@ -83,7 +86,10 @@
 @media (prefers-color-scheme: dark){
     :root{
         --global-input-backgroundColor: var(--global-color-neutral-800);
-        --global-input-color: var(var(var(--global-color-neutral-050)));
+        --global-input-color: var(--global-color-neutral-050);
+        --global-page-color: var(--global-color-neutral-050);
+        --global-page-background: var(--global-color-neutral-950);
+
     }
 }
 
@@ -118,13 +124,18 @@ img {
 html {
     line-height: 1.5;
     font-family: "Inter Web", Helvetica, arial, sans-serif;
-    color: var(--global-color-neutral-950);
-    background-color: var(--global-color-neutral-050);
+    color: var(--global-page-color);
+    background-color: var(--global-page-background);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+@media(prefers-color-scheme: dark){
+    html{
+        color: var(--global-color-neutral-050);
+        background-color:var(--global-color-neutral-950) ;
+    }
+}
 /*
     Customize the background color and color to match your design.
 */
@@ -617,7 +628,7 @@ input::placeholder {
     font-size: .875rem;
     padding-bottom: var(--global-whitespace-xs);
     line-height: calc(var(--global-baseline) * 2);
-    color: var(--global-color-neutral-800);
+    color: var(--label-color, var(--global-color-neutral-800));
 }
 
 .c-label--option {
@@ -790,6 +801,58 @@ input::placeholder {
     &::after{
         width: 32px;
     }
+}
+
+.c-custom-select{
+    display: block;
+    position: relative;
+}
+.c-custom-select__symbol{
+    width: 1.5rem;
+    position: absolute;
+    pointer-events: none;
+    right: 0.75rem;
+    top: 0.75rem;
+    fill: var(--global-color-neutral-300);
+}
+
+
+.c-password-toggle{
+    display: block;
+    position: relative;
+}
+.c-password-toggle__symbol{
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    /* pointer-events: none; */
+    right: 0.75rem;
+    bottom: 0.75rem;
+    /* top: 0.75rem; */
+    fill: var(--global-color-neutral-300);
+}
+.c-password-toggle__symbol--show{
+    opacity: 1;
+}
+.c-password-toggle__symbol--hide{
+    opacity: 0;
+}
+.c-password-toggle__checkbox:checked + .c-password-toggle__label{
+    background-color: hotpink;
+    & .c-password-toggle__symbol--hide{
+        opacity: 1;
+    }
+    & .c-password-toggle__symbol--show{
+        opacity: 0;
+    }
+
+    
+    
+    /* transition: var(--global-transitionTiming-alpha) */
+}
+
+.has-error{
+    --label-color:red;
 }
 
 /*------------------------------------*\
